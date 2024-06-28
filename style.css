@@ -20,7 +20,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-input[type="text"] {
+input[type="word"] {
     padding: 10px;
     width: 200px;
     margin-right: 10px;
