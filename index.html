@@ -9,10 +9,14 @@
 <body>
     <div class="container">
         <h1>Todo List App</h1>
-        <div class="input-container">
+        <form class="input-container" onsubmit="addOrEditUser(event)">
             <input type="name" id="userInput" placeholder="Enter Your Name">
-            <button onclick="addOrEditUser()" id="addUserBtn">Add User</button>
-        </div>
+
+            <div class="button-group">
+                <button type="submit" id="addUserBtn">Add User</button>
+                <button type="button" onclick="cancelEdit()" id="cancelEditBtn" style="display: none;">Cancel</button>
+            </div>
+        </form>
         <table>
             <thead>
                 <tr>
@@ -32,7 +36,15 @@
         <div class="modal-content">
             <p>Are you sure you want to delete?</p>
             <button id="confirmDeleteBtn">Yes</button>
-            <button id="cancelDeleteBtn">No</button>
+            <button id="cancelDeleteBtn" class="primary">No</button>
+        </div>
+    </div>
+
+    <!-- Cancellation confirmation modal -->
+    <div id="cancelModal" class="modal">
+        <div class="modal-content">
+            <p>Canceled.</p>
+            <button id="closeCancelModalBtn" class="primary">OK</button>
         </div>
     </div>
 

@@ -3,9 +3,16 @@ let editIndex = null;
 
 document.getElementById('cancelDeleteBtn').onclick = () => {
     document.getElementById('deleteModal').style.display = 'none';
+    document.getElementById('cancelModal').style.display = 'flex';
 };
 
-function addOrEditUser() {
+document.getElementById('closeCancelModalBtn').onclick = () => {
+    document.getElementById('cancelModal').style.display = 'none';
+};
+
+function addOrEditUser(event) {
+    event.preventDefault(); // Prevent form from submitting and refreshing the page
+
     const userInput = document.getElementById('userInput').value.trim();
     if (userInput === '') return;
 
@@ -13,6 +20,7 @@ function addOrEditUser() {
         users[editIndex] = userInput;
         editIndex = null;
         document.getElementById('addUserBtn').textContent = 'Add User';
+        document.getElementById('cancelEditBtn').style.display = 'none';
     } else {
         users.push(userInput);
     }
@@ -56,7 +64,15 @@ function renderTable() {
 function editUser(index) {
     document.getElementById('userInput').value = users[index];
     document.getElementById('addUserBtn').textContent = 'Edit User';
+    document.getElementById('cancelEditBtn').style.display = 'inline';
     editIndex = index;
+}
+
+function cancelEdit() {
+    document.getElementById('userInput').value = '';
+    document.getElementById('addUserBtn').textContent = 'Add User';
+    document.getElementById('cancelEditBtn').style.display = 'none';
+    editIndex = null;
 }
 
 function confirmDelete(index) {

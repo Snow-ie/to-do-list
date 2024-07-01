@@ -1,15 +1,9 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: Arial, sans-serif;
-  background-color: #00bfff;
+  background-color: #00BFFF;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 100vh;
   margin: 0;
 }
@@ -18,64 +12,82 @@ body {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 800px;
 }
 
 .input-container {
-  position: relative;
-  display: inline-block;
+  display: flex;
+  width: 100%;
+}
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 input[type="name"] {
   padding: 10px;
-  min-width: 300px;
+  width: 200px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  flex-grow: 1;
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
 }
 
 button {
   padding: 10px 20px;
-}
-
-button#addUserBtn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-color: #00bfff;
-  color: white;
   border: none;
-  border-radius: 0 5px 5px 0;
+  border-radius: 5px;
   cursor: pointer;
 }
 
+button#addUserBtn {
+  background-color: #00BFFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button#cancelEditBtn {
+  background-color: #FF6347;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
 table {
-  min-width: 100%;
+  width: 100%;
   margin-top: 20px;
   border-collapse: collapse;
 }
 
-th,
-td {
+th, td {
   padding: 10px;
   border: 1px solid #ccc;
-  text-align: left;
 }
 
 button.edit-btn {
-  background-color: #00bfff;
+  background-color: #00BFFF;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
 button.delete-btn {
-  background-color: #ff6347;
+  background-color: #FF6347;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -100,4 +112,12 @@ button.delete-btn {
 
 .modal-content button {
   margin: 5px;
+}
+
+button.primary {
+  background-color: #00BFFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
