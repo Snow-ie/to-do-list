@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List App</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
     <div class="container">
-      <h1>Todo List App</h1>
-      <input type="word" id="nameInput" placeholder="Enter Your Name" />
-      <button onclick="addUser()">Add User</button>
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Your Name</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="userTable">
-          <!-- Users will be added here dynamically -->
-        </tbody>
-      </table>
+        <h1>Todo List App</h1>
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Enter Your Name">
+            <button onclick="addOrEditUser()" id="addUserBtn">Add User</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Your Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                <!-- Users will be added here dynamically -->
+            </tbody>
+        </table>
     </div>
+
+    <!-- Delete confirmation modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to delete?</p>
+            <button id="confirmDeleteBtn">Yes</button>
+            <button id="cancelDeleteBtn">No</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
-  </body>
+</body>
 </html>

@@ -1,54 +1,71 @@
-let userCount = 1;
+let users = [];
+let editIndex = null;
 
-function addUser() {
-    const nameInput = document.getElementById('nameInput');
-    const name = nameInput.value.trim();
-    if (name !== '') {
-        const userTable = document.getElementById('userTable');
-        const row = userTable.insertRow();
-        row.insertCell(0).innerText = userCount++;
-        row.insertCell(1).innerText = name;
-        const actionsCell = row.insertCell(2);
-        
-        const editBtn = document.createElement('button');
-        editBtn.innerText = '✏️';
-        editBtn.classList.add('edit-btn');
-        editBtn.onclick = function() {
-            editUser(this);
-        };
-        actionsCell.appendChild(editBtn);
+document.getElementById('cancelDeleteBtn').onclick = () => {
+    document.getElementById('deleteModal').style.display = 'none';
+};
 
-        const deleteBtn = document.createElement('button');
-        deleteBtn.innerText = '🗑️';
-        deleteBtn.classList.add('delete-btn');
-        deleteBtn.onclick = function() {
-            deleteUser(this);
-        };
-        actionsCell.appendChild(deleteBtn);
+function addOrEditUser() {
+    const userInput = document.getElementById('userInput').value.trim();
+    if (userInput === '') return;
 
-        nameInput.value = '';
+    if (editIndex !== null) {
+        users[editIndex] = userInput;
+        editIndex = null;
+        document.getElementById('addUserBtn').textContent = 'Add User';
+    } else {
+        users.push(userInput);
     }
+    document.getElementById('userInput').value = '';
+    renderTable();
 }
 
-function editUser(btn) {
-    const row = btn.parentElement.parentElement;
-    const nameCell = row.cells[1];
-    const newName = prompt('Edit name:', nameCell.innerText);
-    if (newName) {
-        nameCell.innerText = newName;
-    }
+function renderTable() {
+    const userTableBody = document.getElementById('userTableBody');
+    userTableBody.innerHTML = '';
+    users.forEach((user, index) => {
+        const row = document.createElement('tr');
+
+        const cellIndex = document.createElement('td');
+        cellIndex.textContent = index + 1;
+        row.appendChild(cellIndex);
+
+        const cellName = document.createElement('td');
+        cellName.textContent = user;
+        row.appendChild(cellName);
+
+        const cellActions = document.createElement('td');
+
+        const editButton = document.createElement('button');
+        editButton.innerHTML = '&#9998;';
+        editButton.className = 'edit-btn';
+        editButton.onclick = () => editUser(index);
+        cellActions.appendChild(editButton);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '&#128465;';
+        deleteButton.className = 'delete-btn';
+        deleteButton.onclick = () => confirmDelete(index);
+        cellActions.appendChild(deleteButton);
+
+        row.appendChild(cellActions);
+        userTableBody.appendChild(row);
+    });
 }
 
-function deleteUser(btn) {
-    const row = btn.parentElement.parentElement;
-    row.parentElement.removeChild(row);
-    userCount--;
-    updateRowNumbers();
+function editUser(index) {
+    document.getElementById('userInput').value = users[index];
+    document.getElementById('addUserBtn').textContent = 'Edit User';
+    editIndex = index;
 }
 
-function updateRowNumbers() {
-    const rows = document.getElementById('userTable').rows;
-    for (let i = 0; i < rows.length; i++) {
-        rows[i].cells[0].innerText = i + 1;
-    }
+function confirmDelete(index) {
+    document.getElementById('deleteModal').style.display = 'flex';
+    document.getElementById('confirmDeleteBtn').onclick = () => deleteUser(index);
+}
+
+function deleteUser(index) {
+    users.splice(index, 1);
+    document.getElementById('deleteModal').style.display = 'none';
+    renderTable();
 }
