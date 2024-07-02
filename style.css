@@ -42,9 +42,6 @@ input[type="name"] {
 
 button {
   padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 button#addUserBtn {
@@ -69,10 +66,20 @@ table {
   margin-top: 20px;
   border-collapse: collapse;
 }
-
+tr{
+  border-bottom: 1px solid grey;
+}
 th, td {
   padding: 10px;
   border: 1px solid #ccc;
+  border: none;
+  word-break: break-all;
+}
+tr td:last-of-type{
+  min-width: 150px;
+}
+thead th{
+  text-align: left;
 }
 
 button.edit-btn {
@@ -81,6 +88,7 @@ button.edit-btn {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  
 }
 
 button.delete-btn {
@@ -89,6 +97,7 @@ button.delete-btn {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .modal {
